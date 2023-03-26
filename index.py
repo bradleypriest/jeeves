@@ -15,8 +15,6 @@ def callback(recognizer, audio):
         handle_message(message)
     except sr.UnknownValueError:
         print("Could not understand audio")
-    except sr.RequestError as e: 
-        print("Could not request results")
 
 def listen():
     r = sr.Recognizer()
