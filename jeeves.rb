@@ -1,27 +1,19 @@
 require 'active_support'
+require './lib/jeeves/cache'
+require './lib/jeeves/middleware'
 
 class Jeeves
   def initialize
-    @history = History.new
+    @cache = Cache.new
+    @history = @cache.cached_set(key: :history)
+    @stack = Middleware.new.build_stack(cache: @cache)
   end
 
   def process(text)
-    @history << text
-    puts "I heard: \"#{text}\""
-  end
+    @history.push(text)
 
-  class History
-    KEY = "jeeves"
-
-    def initialize
-      @cache = ActiveSupport::Cache::FileStore.new("tmp/cache")
-      @cache.clear
-    end
-
-    def <<(value)
-      prev = @cache.read(KEY) || []
-      prev.append(value)
-      @cache.write(KEY, prev)
+    @stack.detect do |middleware|
+      middleware.process(text)
     end
   end
 end
