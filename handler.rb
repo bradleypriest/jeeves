@@ -8,7 +8,7 @@ while true do
   begin
     STDIN.each_line do |line|
       if line.start_with?("Message: ")
-        handler.process(line.split("Message: ")[1])
+        handler.process(line.split("Message: ")[1].chomp)
       else
         print line
       end
