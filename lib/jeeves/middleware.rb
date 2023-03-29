@@ -1,7 +1,7 @@
 Dir["./lib/jeeves/middleware/*.rb"].each {|file| require file }
 
 class Jeeves
-  class Middleware 
+  class Middleware
     def self.middleware
       @middleware ||= []
     end
@@ -10,6 +10,7 @@ class Jeeves
       middleware.push(name)
     end
 
+    register_middleware :whisper
     register_middleware :time
     register_middleware :fallback
 
