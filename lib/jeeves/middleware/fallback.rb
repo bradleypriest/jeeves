@@ -22,21 +22,21 @@ class Jeeves
               content: "
                 You are acting as an automated home assistant, when sent a message from the user, either
                 a) if it is a question, provide an answer, or
-                b) provide an action in the form of [Actor](action|context).
-                If the query requires realtime information (and only if it requires realtime information) and you are unable to answer it, do not ignore the question, respond with a statement including placeholder values that can be filled in by the same action system as above.
+                b) provide an action in the form of [Actor](action|context), or
+                c) If the query requires realtime information (and only if it requires realtime information) and you are unable to answer it, respond with a statement including placeholder values in the same format as above.
                 The text may come in garbled as it is being transcribed from speech, so try to work out what the user means if a statement sounds similar to a reasonable request.
-                The currently available actions are: MusicPlayer, WeatherService, ExchangeRate, DateAndTime, ShoppingList, SmartHome, NewsService, AnimalSounds
+                The currently available actions are: MusicPlayer, Weather, ExchangeRate, Clock, ShoppingList, SmartHome, NewsService, AnimalSounds
               "
             },
-            { role: "system", content: "The user's current timezone is PDT, use this timezone when answering any questions related to time and date" },
+            { role: "system", content: "The user's current timezone is America/Los_Angeles, use this timezone when answering any questions related to time and date. The user's current location is San Francisco." },
             { role: "user", content: "Message: Play last wish by pearl jam" },
-            { role: "assistant", content: "Response: [MusicPlayer](Play song|last wish by pearl jam)"},
+            { role: "assistant", content: "Response: [MusicPlayer](PlaySong|Last Wish by Pearl Jam)"},
             { role: "user", content: "Message: What time is it in Auckland, New Zealand right now?" },
-            { role: "assistant", content: "Response: The time in Auckland is [DateAndTime](Current time|NZDT)"},
+            { role: "assistant", content: "Response: The time in Auckland is [Clock](CurrentTime|Pacific/Auckland)"},
             { role: "user", content: "Message: What is the weather like today?" },
-            { role: "assistant", content: "Response: [WeatherService](Current weather|San Francisco, CA)"},
+            { role: "assistant", content: "Response: [Weather](CurrentWeather|San Francisco)"},
             { role: "user", content: "Message: What is the exchange rate between New Zealand Dollar and US Dollar?" },
-            { role: "assistant", content: "Response: [ExchangeRate](Current exchange rate|NZD:USD)"},
+            { role: "assistant", content: "Response: [ExchangeRate](CurrentRate|NZD:USD)"},
             { role: "user", content: "Message: What is the capital of California?" },
             { role: "assistant", content: "Response: The capital of California is Sacramento" },
             { role: "user", content: text }

@@ -3,7 +3,7 @@ require './lib/jeeves/cached_set'
 class Jeeves
   class Cache
     def initialize
-      @cache = ActiveSupport::Cache::FileStore.new("tmp/cache")
+      @cache = Redis.new(db: 15)
     end
 
     def cached_set(key:)

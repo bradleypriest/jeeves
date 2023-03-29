@@ -5,9 +5,12 @@ require './jeeves'
 module InputHandler
   WEIRDNESSES = [
     'Thank you.',
+    'Thank you!',
     'Thank you for watching.',
+    'Thank you for watching!',
     'Thanks for watching.',
-    'Thank you for watching!'
+    'Thanks for watching!',
+    'Thanks for watching guys!',
   ].freeze
 
   def self.handler

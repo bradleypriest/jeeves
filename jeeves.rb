@@ -1,6 +1,9 @@
 require 'active_support'
+require 'redis'
 require './lib/jeeves/cache'
 require './lib/jeeves/middleware'
+require './lib/jeeves/response'
+Dir["./lib/jeeves/service/*.rb"].each {|file| require file }
 
 class Jeeves
   attr_reader :cache, :logger
@@ -15,20 +18,16 @@ class Jeeves
   end
 
   def process(text)
-    @history.push(text)
+    @history.add(text)
 
-    output = @stack.lazy.filter_map do |middleware, _|
+    message = @stack.lazy.filter_map do |middleware, _|
       middleware.process(text)
     end.first
 
-    hydrate output
-  end
-
-  def hydrate(message)
     if message.is_a?(String)
-      puts message
+      Response.new(self, message).parse
     else
-      puts "CHECK ME: #{message}"
+      raise message
     end
   end
 end

@@ -4,13 +4,11 @@ class CachedSet
     @key   = key
   end
 
-  def push(value)
-    prev = @cache.read(@key) || []
-    prev.append(value)
-    @cache.write(@key, prev)
+  def add(value)
+    @cache.sadd(@key, value)
   end
 
   def clear
     @cache.delete(@key)
   end
-end 
+end
