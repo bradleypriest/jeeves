@@ -11,7 +11,7 @@ def handle_message(message):
 # this is called from the background thread
 def callback(recognizer, audio):
     try:
-        message = recognizer.recognize_whisper(audio)
+        message = recognizer.recognize_whisper(audio, language="english")
         handle_message(message)
     except sr.UnknownValueError:
         print("Could not understand audio")
