@@ -1,3 +1,5 @@
+require 'strscan'
+
 class Jeeves
   class Response
     Token = Data.define(:actor, :action, :context)
@@ -12,7 +14,7 @@ class Jeeves
 
     def parse
       process_tokens
-      puts @tokens
+      puts @actions
       puts @message
     end
 

@@ -11,6 +11,7 @@ module InputHandler
     'Thanks for watching.',
     'Thanks for watching!',
     'Thanks for watching guys!',
+    'Then, check again next time.',
   ].freeze
 
   def self.handler

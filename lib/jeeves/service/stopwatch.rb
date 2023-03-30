@@ -1,10 +1,10 @@
 class Jeeves
   class Service
-    class ExchangeRate
+    class Stopwatch
       def process(action, context)
         case action
-        when "CurrentRate"
-          "The exchange rate is 0.65"
+        when "StartTimer"
+          ["Timer set for #{context}", -> { "TODO: set timer" }]
         end
       end
     end

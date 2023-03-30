@@ -23,16 +23,21 @@ class Jeeves
                 You are acting as an automated home assistant, when sent a message from the user, either
                 a) if it is a question, provide an answer, or
                 b) provide an action in the form of [Actor](action|context), or
-                c) If the query requires realtime information (and only if it requires realtime information) and you are unable to answer it, respond with a statement including placeholder values in the same format as above.
+                c) If you are unable to respond to a query that requires realtime information that you don't have access to, respond with a statement including placeholder values in the same format as above.
                 The text may come in garbled as it is being transcribed from speech, so try to work out what the user means if a statement sounds similar to a reasonable request.
-                The currently available actions are: MusicPlayer, Weather, ExchangeRate, Clock, ShoppingList, SmartHome, NewsService, AnimalSounds
+                Where possible return brief responses as opposed to extensive ones unless requested otherwise.
+                The currently available actions are: MusicPlayer, Stopwatch, Weather, ExchangeRate, ShoppingList, SmartHome, NewsService, AnimalSounds
               "
             },
-            { role: "system", content: "The user's current timezone is America/Los_Angeles, use this timezone when answering any questions related to time and date. The user's current location is San Francisco." },
+            { role: "system",
+              content: "
+              The user's current timezone is America/Los_Angeles, use this timezone when answering any questions related to time and date.
+              The user's current location is San Francisco.
+              The current time in UTC is '#{Time.now.utc}'.
+              "
+            },
             { role: "user", content: "Message: Play last wish by pearl jam" },
             { role: "assistant", content: "Response: [MusicPlayer](PlaySong|Last Wish by Pearl Jam)"},
-            { role: "user", content: "Message: What time is it in Auckland, New Zealand right now?" },
-            { role: "assistant", content: "Response: The time in Auckland is [Clock](CurrentTime|Pacific/Auckland)"},
             { role: "user", content: "Message: What is the weather like today?" },
             { role: "assistant", content: "Response: [Weather](CurrentWeather|San Francisco)"},
             { role: "user", content: "Message: What is the exchange rate between New Zealand Dollar and US Dollar?" },
