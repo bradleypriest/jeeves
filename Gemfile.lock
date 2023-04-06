@@ -49,6 +49,7 @@ PLATFORMS
 DEPENDENCIES
   activesupport
   http
+  minitest
   redis
 
 RUBY VERSION

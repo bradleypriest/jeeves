@@ -5,9 +5,9 @@ class Jeeves
 
       def process(action, context)
         case action
-        when "AddItem"
+        when "AddItem", "AddToList"
           @cache.sadd(KEY, context)
-          "Added #{context} to your shopping list"
+          "#{context} added to your shopping list"
         when "RemoveItem"
           @cache.srem(KEY, context)
           "Removed #{context} to your shopping list"

@@ -1,0 +1,2 @@
+#! /bin/bash
+dotenv ruby -Ilib:test test/acceptance/test_examples.rb

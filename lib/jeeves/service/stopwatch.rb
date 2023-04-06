@@ -5,6 +5,7 @@ class Jeeves
         case action
         when "StartTimer"
           ["Timer set for #{context}", -> { "TODO: set timer" }]
+        # when "GetRemainingTime"
         end
       end
     end

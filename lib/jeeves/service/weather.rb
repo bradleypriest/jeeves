@@ -5,7 +5,7 @@ class Jeeves
         case action
         when 'CurrentWeather'
           weather_json = get_weather(*geocode(location))
-          "The weather is #{weather_json['temperature'].round} degrees with #{weather_code(weather_json['weathercode'])}"
+          "The weather is #{weather_json['temperature'].round} degrees and #{weather_code(weather_json['weathercode'])}"
         end
       end
 

@@ -15,7 +15,7 @@ class Jeeves
     def parse
       process_tokens
       puts @actions
-      puts @message
+      puts "\e[32m#{@message}\e[0m"
     end
 
   private
@@ -24,7 +24,7 @@ class Jeeves
       scanner = StringScanner.new(@message)
       tokens = {}
       until scanner.eos?
-        portion = scanner.scan_until(/\[(\w+)\]\((\w+)(?:\|(.+))?\)/)
+        portion = scanner.scan_until(/\[(\w+)\]\((\w+)(?:\|(.+?))?\)/)
         if portion.nil?
           scanner.terminate
           next
